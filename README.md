@@ -2,7 +2,7 @@
 
 Welcome to the official repository of the **CyberSecurity Club** at Government College of Engineering, Jalgaon (GCOEJ). Our mission is to empower students with practical cybersecurity skills through workshops, Capture The Flag (CTF) challenges, and collaborative projects.
 
-🌐 **Live Website**: [https://vijayshikhare.github.io/CyberSecurityClub](https://vijayshikhare.github.io/CyberSecurityClub)
+🌐 **Live Website**: [https://gcoejcsclub.github.io/CyberSecurityClub](https://gcoejcsclub.github.io/CyberSecurityClub)
 
 ---
 
