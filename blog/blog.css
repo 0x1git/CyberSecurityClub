@@ -86,6 +86,7 @@
   flex-wrap: nowrap;
   margin-bottom: 8px;
   gap: 10px; /* Optional spacing between elements */
+  min-width: 0; /* prevents overflow in narrow flexbox */
 }
 
 .language-tag {
@@ -209,15 +210,13 @@ pre {
   }
 
   .snippet-header {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;        /* ✅ Keep it horizontal */
+    align-items: center;        /* ✅ Align items properly */
     gap: 8px;
-  /* <p>Developed by Vijay shikhre</p> --- */
-
   }
 
   .copy-btn {
-    align-self: flex-end;
+    align-self: center;         /* ✅ Ensure vertical alignment */
   }
 }
 
@@ -235,17 +234,23 @@ pre {
   }
 
   .snippet-header {
-    gap: 4px;
+    flex-direction: row;     /* ✅ Keep horizontal */
+    align-items: center;     /* ✅ Align properly */
+    gap: 6px;
+    flex-wrap: nowrap;       /* ✅ Prevent wrapping */
   }
 
   .language-tag {
     font-size: 0.75em;
     padding: 3px 8px;
+    flex-shrink: 1;
   }
 
   .copy-btn {
-    font-size: 1em;
+    font-size: 0.95em;
     padding: 4px 6px;
+    align-self: center;
+    flex-shrink: 0;
   }
 
   .code-content {
