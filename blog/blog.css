@@ -83,6 +83,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: nowrap;         /* ❗Prevent line breaks */
   margin-bottom: 8px;
 }
 
@@ -104,6 +105,8 @@
   cursor: pointer;
   font-size: 0.9em;
   transition: background-color 0.3s ease;
+  white-space: nowrap;       /* ❗Ensure icon stays on one line */
+  flex-shrink: 0;   
 }
 
 .copy-btn:hover {
@@ -227,9 +230,18 @@ pre {
     font-size: 0.95em;
   }
 
+  .snippet-header {
+    gap: 4px;
+  }
+
+  .language-tag {
+    font-size: 0.75em;
+    padding: 3px 8px;
+  }
+
   .copy-btn {
     font-size: 0.85em;
-    padding: 5px 8px;
+    padding: 4px 6px;
   }
 
   .code-content {
