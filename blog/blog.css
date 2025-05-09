@@ -83,8 +83,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: nowrap;         /* ❗Prevent line breaks */
+  flex-wrap: nowrap;
   margin-bottom: 8px;
+  gap: 10px; /* Optional spacing between elements */
 }
 
 .language-tag {
@@ -93,21 +94,24 @@
   font-size: 0.8em;
   padding: 4px 10px;
   border-radius: 5px;
+  white-space: nowrap;
+  flex-shrink: 1; /* Allows shrinking if space is tight */
 }
 
-/* --- Copy Button --- */
 .copy-btn {
-  background-color: #00bbd400;
+  background-color: transparent;
   border: none;
   color: #0b1f3a;
-  padding: 6px 10px;
+  padding: 4px 8px;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 0.9em;
+  font-size: 1.1em;
   transition: background-color 0.3s ease;
-  white-space: nowrap;       /* ❗Ensure icon stays on one line */
-  flex-shrink: 0;   
+  white-space: nowrap;
+  flex-shrink: 0;
+  align-self: center;
 }
+
 
 .copy-btn:hover {
   background-color: #00a2ba;
@@ -240,7 +244,7 @@ pre {
   }
 
   .copy-btn {
-    font-size: 0.85em;
+    font-size: 1em;
     padding: 4px 6px;
   }
 
