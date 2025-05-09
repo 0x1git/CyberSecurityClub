@@ -51,7 +51,7 @@
 
 .blog-article.visible {
   opacity: 1;
-  max-height: 400px;
+  max-height: none;
   padding: 20px;
   margin: 0;
 }
