@@ -38,12 +38,26 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   typeWriter(); // Start typing directly on DOM ready
-
-  // Scroll effect
-  window.addEventListener("scroll", function () {
+  // Enhanced Scroll effect for transparent navbar
+  function updateNavbarTransparency() {
     const navbar = document.getElementById("navbar");
+    const scrollPosition = window.scrollY;
+    
     if (navbar) {
-      navbar.classList.toggle("scrolled", window.scrollY > 50);
+      // Add scrolled class when user scrolls down
+      navbar.classList.toggle("scrolled", scrollPosition > 50);
+      
+      // Make sure navbar is always visible at top
+      if (scrollPosition === 0) {
+        navbar.style.backgroundColor = "transparent";
+        navbar.style.boxShadow = "none";
+      }
     }
-  });
+  }
+  
+  // Initial call to set the correct state
+  updateNavbarTransparency();
+  
+  // Listen for scroll events
+  window.addEventListener("scroll", updateNavbarTransparency);
 });
