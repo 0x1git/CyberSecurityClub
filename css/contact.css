@@ -1,0 +1,146 @@
+/* --- Contact Section Styling --- */
+.contact-section {
+  background-color: #0b0c10;
+  padding: 80px 40px;
+  color: #f4f4f4;
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.contact-header h1 {
+  font-size: 2.8em;
+  color: #00bcd4;
+  margin-bottom: 15px;
+}
+
+.contact-header p {
+  font-size: 1.1em;
+  color: #ccc;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.contact-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Contact Info Styles */
+.contact-info {
+  flex: 1 1 300px;
+  min-width: 260px;
+}
+
+.info-box {
+  margin-bottom: 30px;
+  background: rgba(30, 41, 59, 0.8);
+  padding: 25px;
+  border-radius: 10px;
+  border: 1px solid #00bcd4;
+}
+
+.info-box h3 {
+  color: #00bcd4;
+  font-size: 1.2em;
+  margin-bottom: 15px;
+}
+
+.info-box p {
+  font-size: 1em;
+  color: #e2e8f0;
+  line-height: 1.6;
+}
+
+/* Contact Form Styles */
+.contact-form {
+  flex: 1 1 500px;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: rgba(30, 41, 59, 0.8);
+  border-radius: 15px;
+  padding: 30px;
+  border: 1px solid #00bcd4;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1em;
+  background-color: rgba(15, 23, 42, 0.8);
+  color: #f4f4f4;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 188, 212, 0.6);
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #aaa;
+}
+
+.contact-form button {
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  background-color: #00bcd4;
+  color: #0b1f3a;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  background-color: #00a2ba;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+  .contact-section {
+    padding: 60px 20px;
+  }
+  
+  .contact-container {
+    flex-direction: column;
+  }
+  
+  .contact-form, 
+  .contact-info {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .contact-header h1 {
+    font-size: 2em;
+  }
+  
+  .contact-header p {
+    font-size: 1em;
+  }
+  
+  .info-box, 
+  .contact-form {
+    padding: 20px;
+  }
+}

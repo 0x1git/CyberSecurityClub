@@ -4,16 +4,497 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="./assets/images/favicon_circular.png">
-  <title>CyberSecurity Club</title>
-  <link rel="stylesheet" href="css/style.css">
+  <title>CyberSecurity Club</title>  <link rel="stylesheet" href="css/style.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <!-- <link rel="stylesheet" href="blog.css"> -->
   <link rel="stylesheet" href="./blog/blog.css">
+  <style>
+  /* --- Contact Section Styling --- */
+  .contact-section {
+    background-color: #0b0c10;
+    padding: 80px 40px;
+    color: #f4f4f4;
+  }
 
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-  />
+  /* --- Team Section Styling --- */
+  .team-section {
+    background-color: #0b0c10;
+    padding: 80px 40px;
+    color: #f4f4f4;
+  }
+
+  .team-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+  }
+
+  /* Team Slider Styles */
+  .team-slider-container {
+    position: relative;
+    max-width: 1400px;
+    margin: 40px auto;
+    overflow: hidden;
+  }
+
+  .team-slider {
+    overflow: hidden;
+    border-radius: 20px;
+  }
+
+  .team-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    gap: 30px;
+  }
+
+  .team-track .team-card {
+    flex: 0 0 350px;
+    background: rgba(30, 41, 59, 0.8);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    border: 1px solid #00bcd4;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 188, 212, 0.8);
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .slider-btn:hover {
+    background: rgba(0, 188, 212, 1);
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .prev-btn {
+    left: -25px;
+  }
+
+  .next-btn {
+    right: -25px;
+  }
+
+  .slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .dot.active {
+    background: #00bcd4;
+    transform: scale(1.2);
+  }
+
+  .dot:hover {
+    background: rgba(0, 188, 212, 0.7);
+  }
+
+  .team-card {
+    background: rgba(30, 41, 59, 0.8);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    border: 1px solid #00bcd4;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .team-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 188, 212, 0.1), transparent);
+    transition: all 0.5s ease;
+  }
+
+  .team-card:hover::before {
+    left: 100%;
+  }
+
+  .team-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 188, 212, 0.3);
+    border-color: #00bcd4;
+  }
+
+  .team-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto 25px;
+    border: 4px solid #00bcd4;
+    object-fit: cover;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+  }
+
+  .team-card:hover .team-photo {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(0, 188, 212, 0.6);
+  }
+
+  .team-name {
+    font-size: 1.4em;
+    color: #00bcd4;
+    margin-bottom: 10px;
+    font-weight: 600;
+    position: relative;
+    z-index: 2;
+  }
+
+  .team-role {
+    font-size: 1.1em;
+    color: #fff;
+    margin-bottom: 15px;
+    font-weight: 500;
+    position: relative;
+    z-index: 2;
+  }
+
+  .team-description {
+    font-size: 0.95em;
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .team-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .skill-tag {
+    background: linear-gradient(135deg, #00bcd4, #1e3c72);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.8em;
+    font-weight: 500;
+  }
+
+  .team-social {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .social-link {
+    color: #00bcd4;
+    font-size: 1.3em;
+    transition: all 0.3s ease;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #00bcd4;
+  }
+
+  .social-link:hover {
+    color: #fff;
+    background-color: #00bcd4;
+    transform: scale(1.1);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .section-title {
+    font-size: 2.5em;
+    color: #00bcd4;
+    margin-bottom: 15px;
+  }
+
+  .section-subtitle {
+    font-size: 1.1em;
+    color: #ccc;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* Leadership Section */
+  .leadership-section {
+    margin-bottom: 80px;
+  }
+
+  .leadership-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 50px;
+    margin-top: 40px;
+  }
+
+  .leadership-card {
+    background: rgba(30, 41, 59, 0.9);
+    border-radius: 25px;
+    padding: 40px;
+    text-align: center;
+    border: 2px solid #00bcd4;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .leadership-card .team-photo {
+    width: 180px;
+    height: 180px;
+    border: 5px solid #00bcd4;
+  }
+  /* Responsive Design for Team */
+  @media (max-width: 768px) {
+    .team-section {
+      padding: 60px 20px;
+    }
+
+    .team-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .leadership-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .team-card,
+    .leadership-card {
+      padding: 25px;
+    }
+
+    /* Slider responsive styles */
+    .team-track .team-card {
+      flex: 0 0 280px;
+    }
+
+    .slider-btn {
+      font-size: 1.2rem;
+      padding: 12px;
+      width: 45px;
+      height: 45px;
+    }
+
+    .prev-btn {
+      left: -20px;
+    }
+
+    .next-btn {
+      right: -20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .team-track .team-card {
+      flex: 0 0 250px;
+      padding: 20px;
+    }
+
+    .slider-btn {
+      font-size: 1rem;
+      padding: 10px;
+      width: 40px;
+      height: 40px;
+    }
+
+    .prev-btn {
+      left: -15px;
+    }
+
+    .next-btn {
+      right: -15px;
+    }
+  }
+
+  .contact-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .contact-header h1 {
+    font-size: 2.8em;
+    color: #00bcd4;
+    margin-bottom: 15px;
+  }
+
+  .contact-header p {
+    font-size: 1.1em;
+    color: #ccc;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Contact Info Styles */
+  .contact-info {
+    flex: 1 1 300px;
+    min-width: 260px;
+  }
+
+  .info-box {
+    margin-bottom: 30px;
+    background: rgba(30, 41, 59, 0.8);
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid #00bcd4;
+  }
+
+  .info-box h3 {
+    color: #00bcd4;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+  }
+
+  .info-box p {
+    font-size: 1em;
+    color: #e2e8f0;
+    line-height: 1.6;
+  }
+
+  /* Contact Form Styles */
+  .contact-form {
+    flex: 1 1 500px;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: rgba(30, 41, 59, 0.8);
+    border-radius: 15px;
+    padding: 30px;
+    border: 1px solid #00bcd4;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1em;
+    background-color: rgba(15, 23, 42, 0.8);
+    color: #f4f4f4;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .contact-form textarea {
+    resize: vertical;
+  }
+
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 188, 212, 0.6);
+  }
+
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder {
+    color: #aaa;
+  }
+
+  .contact-form button {
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background-color: #00bcd4;
+    color: #0b1f3a;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .contact-form button:hover {
+    background-color: #00a2ba;
+  }
+
+  /* Responsive Styles */
+  @media screen and (max-width: 768px) {
+    .contact-section {
+      padding: 60px 20px;
+    }
+    
+    .contact-container {
+      flex-direction: column;
+    }
+    
+    .contact-form, 
+    .contact-info {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .contact-header h1 {
+      font-size: 2em;
+    }
+    
+    .contact-header p {
+      font-size: 1em;
+    }
+    
+    .info-box, 
+    .contact-form {
+      padding: 20px;
+    }
+  }
+  </style>
   
 
 
@@ -28,19 +509,17 @@
                 <a href="index.html"><img class="log" src="assets/images/logo.jpg" alt="Club Logo"></a>
                 <a href="index.html" class="ctf-title"> CyberSecurity Club</a>
             </div>
-            <div class="hamburger" id="hamburger">&#9776;</div>           
-            <ul class="nav-links" id="navLinks">
+            <div class="hamburger" id="hamburger">&#9776;</div>            <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#blogSection">Blogs</a></li>
-                <li><a href="#team">Our Team</a></li>
+                <li><a href="writeups.html">Writeups</a></li>
+                <li><a href="#team">Team</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
-    
-
-    <section id="home" class="hero">
+        <section id="home" class="hero">
+        <div class="transition-overlay"></div>
         <div class="hero-overlay">
             <div class="hero-content">
                 <h1 class="typing-text"><span id="typed-text"></span><span class="cursor">|</span></h1>
@@ -54,386 +533,396 @@
                   Building a safer digital world—<em>one byte at a time</em>.
                 </p>
                 
-                <a href="#blogSection" class="cta">Discover More</a>
+                <a href="writeups.html" class="cta">Discover More</a>
             </div>
         </div>
     </section>
     
-
-
     <section id="about" class="about-section">
         <div class="about-container">
             <div class="about-text">
-                <h1>About Our CyberSecurity Club</h1>
+                <div class="section-heading">
+                    <span class="get-ready">ABOUT OUR</span>
+                    <h1>CYBER SECURITY CLUB</h1>
+                </div>
                 <p>At GCOEJ College's CyberSecurity Club, we are dedicated to nurturing
                   the skills of tomorrow's cybersecurity experts. Through engaging CTFs
                   and practical workshops, we provide a platform for students to learn, grow,
-                  and challenge themselves. With guidance from 
-                  experienced mentors, we strive to build a community that is ready to
-                  tackle the evolving challenges of the digital world. Join us in 
-                  securing the cyberspace of tomorrow.
+                  and challenge themselves.
                 </p>
-
-                <ul>
-                    <li>Passionate team of cybersecurity students from GCOEJ, Jalgaon.</li>
-                    <li>Engaging in CTF challenges, workshops, and hands-on learning.</li>
-                    <li>Focus on ethical hacking, cryptography, and network security.</li>
-                    <li>Mentorship-driven environment for skill development.</li>
-                    <li>Collaboration fostering innovation and research.</li>
-                    <li>Preparing the next generation of cybersecurity professionals.</li>
-                </ul>
+                
+                <ul class="about-features">
+                    <li><i class="fas fa-shield-alt"></i> Participate in CTF competitions</li>
+                    <li><i class="fas fa-laptop-code"></i> Hands-on security workshops</li>
+                    <li><i class="fas fa-users"></i> Network with industry professionals</li>
+                    <li><i class="fas fa-certificate"></i> Earn certificates and recognition</li>
+                </ul>                  <div class="about-cta">
+                    <a href="#contact" class="about-btn">Join Us Today</a>
+                    <a href="#team" class="about-btn" style="margin-left: 20px; background: linear-gradient(135deg, #1e3c72, #00bcd4);">Meet Our Team</a>
+                </div>
             </div>
             <div class="about-image">
-                <img src="assets/images/cyber-lab.jpg" alt="Cybersecurity Lab">
+                <img src="assets/images/cyber-lab.jpg" alt="Cybersecurity Lab">            </div>
+        </div>    </section>
+
+    <section id="team" class="team-section">
+        <div class="team-container">
+            <!-- Leadership Section -->
+            <div class="leadership-section">
+                <div class="section-header">
+                    <h2 class="section-title">Meet Our Team</h2>
+                    <p class="section-subtitle">Passionate cybersecurity enthusiasts from GCOEJ, Jalgaon, working together to build a safer digital future. Our diverse team brings together expertise in ethical hacking, digital forensics, network security, and more.</p>
+                </div>
+                
+                <div class="leadership-grid">
+                    <div class="leadership-card team-card">
+                        <img src="./assets/team/vijay_shikhre.jpg" alt="Vijay Shikhre" class="team-photo">
+                        <h3 class="team-name">Vijay Shikhre</h3>
+                        <p class="team-role">President & Lead Developer</p>
+                        <p class="team-description">Full-stack developer and cybersecurity enthusiast with expertise in web security, penetration testing, and secure coding practices. Leads the technical direction of the club.</p>
+                        <div class="team-skills">
+                            <span class="skill-tag">Web Security</span>
+                            <span class="skill-tag">Penetration Testing</span>
+                            <span class="skill-tag">Full-Stack Development</span>
+                            <span class="skill-tag">CTF</span>
+                        </div>
+                        <div class="team-social">
+                            <a href="https://github.com/vijayshikhare" target="_blank" class="social-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://linkedin.com/in/vijayshikhare" target="_blank" class="social-link">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="mailto:vijay@gcoejcsclub.com" class="social-link">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="leadership-card team-card">
+                        <img src="./assets/team/gitesh_bharambe .jpg" alt="Gitesh Bharambe" class="team-photo">
+                        <h3 class="team-name">Gitesh Bharambe</h3>
+                        <p class="team-role">Vice President & Security Analyst</p>
+                        <p class="team-description">Specialized in network security and digital forensics. Coordinates club activities and manages security research projects with focus on incident response.</p>
+                        <div class="team-skills">
+                            <span class="skill-tag">Network Security</span>
+                            <span class="skill-tag">Digital Forensics</span>
+                            <span class="skill-tag">Incident Response</span>
+                            <span class="skill-tag">Malware Analysis</span>
+                        </div>
+                        <div class="team-social">
+                            <a href="https://github.com/giteshbharambe" target="_blank" class="social-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://linkedin.com/in/giteshbharambe" target="_blank" class="social-link">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="mailto:gitesh@gcoejcsclub.com" class="social-link">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>            <!-- Core Team Section -->
+            <div class="section-header">
+                <h2 class="section-title">Core Team Members</h2>
+                <p class="section-subtitle">Dedicated members driving innovation and excellence in cybersecurity</p>
             </div>
+
+            <div class="team-slider-container">
+                <button class="slider-btn prev-btn" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="team-slider">
+                    <div class="team-track">
+                <div class="team-card">
+                    <img src="./assets/team/Aditya.jpg" alt="Aditya" class="team-photo">
+                    <h3 class="team-name">Aditya</h3>
+                    <p class="team-role">Security Researcher</p>
+                    <p class="team-description">Focuses on vulnerability research and exploit development. Active participant in bug bounty programs and CTF competitions.</p>
+                    <div class="team-skills">
+                        <span class="skill-tag">Vulnerability Research</span>
+                        <span class="skill-tag">Bug Bounty</span>
+                        <span class="skill-tag">Exploit Development</span>
+                    </div>
+                    <div class="team-social">
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <img src="./assets/team/Bhavana_patil.jpg" alt="Bhavana Patil" class="team-photo">
+                    <h3 class="team-name">Bhavana Patil</h3>
+                    <p class="team-role">Cryptography Specialist</p>
+                    <p class="team-description">Expert in cryptographic protocols and secure communications. Leads workshops on encryption technologies and blockchain security.</p>
+                    <div class="team-skills">
+                        <span class="skill-tag">Cryptography</span>
+                        <span class="skill-tag">Blockchain Security</span>
+                        <span class="skill-tag">Secure Communications</span>
+                    </div>
+                    <div class="team-social">
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <img src="./assets/team/Pradeep_Bhale.JPG" alt="Pradeep Bhale" class="team-photo">
+                    <h3 class="team-name">Pradeep Bhale</h3>
+                    <p class="team-role">Cloud Security Engineer</p>
+                    <p class="team-description">Specializes in cloud infrastructure security and DevSecOps practices. Manages club's cloud resources and security automation.</p>
+                    <div class="team-skills">
+                        <span class="skill-tag">Cloud Security</span>
+                        <span class="skill-tag">DevSecOps</span>
+                        <span class="skill-tag">AWS/Azure</span>
+                        <span class="skill-tag">Automation</span>
+                    </div>
+                    <div class="team-social">
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <img src="./assets/team/Purva_bhagwat.jpg" alt="Purva Bhagwat" class="team-photo">
+                    <h3 class="team-name">Purva Bhagwat</h3>
+                    <p class="team-role">Social Engineering Analyst</p>
+                    <p class="team-description">Expert in human psychology and social engineering attacks. Conducts security awareness training and phishing simulations.</p>
+                    <div class="team-skills">
+                        <span class="skill-tag">Social Engineering</span>
+                        <span class="skill-tag">Security Awareness</span>
+                        <span class="skill-tag">OSINT</span>
+                        <span class="skill-tag">Psychology</span>
+                    </div>
+                    <div class="team-social">
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <img src="./assets/team/riya_nehete.jpg" alt="Riya Nehete" class="team-photo">
+                    <h3 class="team-name">Riya Nehete</h3>
+                    <p class="team-role">Mobile Security Researcher</p>
+                    <p class="team-description">Focuses on mobile application security testing and reverse engineering. Expert in Android and iOS security assessments.</p>
+                    <div class="team-skills">
+                        <span class="skill-tag">Mobile Security</span>
+                        <span class="skill-tag">Reverse Engineering</span>
+                        <span class="skill-tag">App Testing</span>
+                        <span class="skill-tag">Static Analysis</span>
+                    </div>
+                    <div class="team-social">
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <img src="./assets/team/Shradhha_raut.jpg" alt="Shraddha Raut" class="team-photo">
+                    <h3 class="team-name">Shraddha Raut</h3>
+                    <p class="team-role">Threat Intelligence Analyst</p>
+                    <p class="team-description">Specializes in threat hunting and intelligence gathering. Monitors emerging threats and develops defensive strategies.</p>
+                    <div class="team-skills">
+                        <span class="skill-tag">Threat Intelligence</span>
+                        <span class="skill-tag">Threat Hunting</span>
+                        <span class="skill-tag">SIEM</span>
+                        <span class="skill-tag">IOC Analysis</span>
+                    </div>
+                    <div class="team-social">
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <img src="./assets/team/shreyash_chavhan.jpg" alt="Shreyash Chavhan" class="team-photo">
+                    <h3 class="team-name">Shreyash Chavhan</h3>
+                    <p class="team-role">Hardware Security Engineer</p>
+                    <p class="team-description">Expert in hardware security and embedded systems. Works on IoT security and hardware penetration testing.</p>
+                    <div class="team-skills">
+                        <span class="skill-tag">Hardware Security</span>
+                        <span class="skill-tag">IoT Security</span>
+                        <span class="skill-tag">Embedded Systems</span>
+                        <span class="skill-tag">Firmware Analysis</span>
+                    </div>
+                    <div class="team-social">
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <img src="./assets/team/Gajbhiye_pranali.jpg" alt="Pranali Gajbhiye" class="team-photo">
+                    <h3 class="team-name">Pranali Gajbhiye</h3>
+                    <p class="team-role">Web Application Security Tester</p>
+                    <p class="team-description">Specializes in web application penetration testing and secure code review. OWASP enthusiast and bug bounty hunter.</p>
+                    <div class="team-skills">
+                        <span class="skill-tag">Web App Security</span>
+                        <span class="skill-tag">OWASP</span>
+                        <span class="skill-tag">Code Review</span>
+                        <span class="skill-tag">Burp Suite</span>
+                    </div>
+                    <div class="team-social">
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <img src="./assets/team/IMG_20250430_133406 - Ujwal Ramteke (1).jpg" alt="Ujwal Ramteke" class="team-photo">
+                    <h3 class="team-name">Ujwal Ramteke</h3>
+                    <p class="team-role">Incident Response Specialist</p>
+                    <p class="team-description">Expert in cybersecurity incident response and digital forensics. Leads emergency response protocols and security incident analysis.</p>
+                    <div class="team-skills">
+                        <span class="skill-tag">Incident Response</span>
+                        <span class="skill-tag">Digital Forensics</span>
+                        <span class="skill-tag">DFIR</span>
+                        <span class="skill-tag">Emergency Protocols</span>
+                    </div>
+                    <div class="team-social">
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <img src="./assets/team/New Doc 04-16-2025 09.46 (1) - pradip chavhan.jpg" alt="Pradip Chavhan" class="team-photo">
+                    <h3 class="team-name">Pradip Chavhan</h3>
+                    <p class="team-role">Network Security Administrator</p>
+                    <p class="team-description">Specializes in network infrastructure security and monitoring. Manages firewall configurations and intrusion detection systems.</p>
+                    <div class="team-skills">
+                        <span class="skill-tag">Network Security</span>
+                        <span class="skill-tag">Firewall Management</span>
+                        <span class="skill-tag">IDS/IPS</span>
+                        <span class="skill-tag">Network Monitoring</span>
+                    </div>
+                    <div class="team-social">
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <img src="./assets/team/deshmukh.jpg" alt="Deshmukh" class="team-photo">
+                    <h3 class="team-name">Deshmukh</h3>
+                    <p class="team-role">Compliance & Risk Analyst</p>
+                    <p class="team-description">Expert in cybersecurity compliance frameworks and risk assessment. Ensures club activities align with security standards and best practices.</p>
+                    <div class="team-skills">
+                        <span class="skill-tag">Risk Assessment</span>
+                        <span class="skill-tag">Compliance</span>
+                        <span class="skill-tag">ISO 27001</span>
+                        <span class="skill-tag">Security Frameworks</span>
+                    </div>                    <div class="team-social">
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                    </div>
+                </div>
+                <button class="slider-btn next-btn" id="nextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <!-- Slider Dots/Indicators -->
+            <div class="slider-dots" id="sliderDots"></div>
         </div>
     </section>
 
-    
-
-    <section class="blog-section" id="blogSection">
-      <div class="blogdiv">
-        <div class="blog-header">
-          <h2>Tech Articles & Tutorials</h2>
-          <input type="text" id="searchInput" placeholder="Search blog articles..." onkeyup="filterBlogs()">
-        </div>
-      
-        <div class="blog-container" id="blogContainer">
-          <!-- Blog 1 -->
-          <div class="blog-article visible">
-            <h3>1. What is SQL Injection?</h3>
-            <p class="blog-text">SQL Injection is a web security vulnerability that ...</p>
-      
-            <div class="snippet-container">
-              <div class="snippet-header">
-                <span class="language-tag">SQL</span>
-                <button class="copy-btn" onclick="copySnippet(this)">📋</button>
-              </div>
-              <pre><code class="code-content">
-      SELECT * FROM users WHERE email = 'user@example.com';
-              </code></pre>
-                          <!-- <p>Developed by Vijay shikhre</p> -->
-
-            </div>
-      
-            <p class="blog-text">Always use parameterized queries to prevent attacks...</p>
-            <a href="./blog/full-sql-injection.html" class="read-more">Read More →</a>
-          </div>
-      
-          <!-- Blog 2 -->
-          <div class="blog-article">
-            <h3>2. How to Secure APIs with JWT</h3>
-            <p class="blog-text">
-              JSON Web Tokens (JWTs) are ...
-
-            </p>
-      
-            <div class="snippet-container">
-              <div class="snippet-header">
-                <span class="language-tag">Node.js</span>
-                <button class="copy-btn" onclick="copySnippet(this)">📋</button>
-              </div>
-              <pre><code class="code-content">
-      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
-              </code></pre>
-            </div>
-      
-            <p class="blog-text">Always store your secret keys safely and rotate JWTs periodically to enhance API security.</p>
-            <a href="./blog/full-sql-injection.html" class="read-more">Read More →</a>
-          </div>
-      
-          <!-- Blog 3 -->
-          <div class="blog-article">
-            <h3>3. Responsive Web Design Basics</h3>
-            <p class="blog-text">
-              Responsive design ensures your ...
-            </p>
-      
-            <div class="snippet-container">
-              <div class="snippet-header">
-                <span class="language-tag">CSS</span>
-                <button class="copy-btn" onclick="copySnippet(this)">📋</button>
-              </div>
-              <pre><code class="code-content">
-        .container {
-          flex-direction: column;
-        }
-              </code></pre>
-            </div>
-      
-            <p class="blog-text">Always use flexible ...</p>
-            <a href="./blog/full-sql-injection.html" class="read-more">Read More →</a>
-          </div>
-      
-          <!-- Blog 4 -->
-          <div class="blog-article">
-            <h3>4. Basics of Hashing Passwords</h3>
-            <p class="blog-text">
-              Hashing passwords before storing ...
-            </p>
-      
-            <div class="snippet-container">
-              <div class="snippet-header">
-                <span class="language-tag">Python</span>
-                <button class="copy-btn" onclick="copySnippet(this)">📋</button>
-              </div>
-              <pre><code class="code-content">
-      import bcrypt
-      password = "mypassword"
-      hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-              </code></pre>
-            </div>
-      
-            <p class="blog-text">Always use strong ...</p>
-            <a href="./blog/full-sql-injection.html" class="read-more">Read More →</a>
-          </div>
-      
-          <!-- Blog 5 -->
-          <div class="blog-article">
-            <h3>5. Difference Between var, let and const</h3>
-            <p class="blog-text">
-              JavaScript offers multiple ways to ...
-            </p>
-      
-            <div class="snippet-container">
-              <div class="snippet-header">
-                <span class="language-tag">JavaScript</span>
-                <button class="copy-btn" onclick="copySnippet(this)">📋</button>
-              </div>
-              <pre><code class="code-content">
-      var a = 10;    // Function scoped let b = 20;    // Block scoped const c = 30;  // Block scoped (constant)
-              </code></pre>
-            <!-- <p>Developed by Vijay shikhre</p> -->
-              
-            </div>
-      
-            <p class="blog-text">Prefer using ...</p>
-            <a href="./blog/full-sql-injection.html" class="read-more">Read More →</a>
-          </div>
-        </div>
-      
-        <!-- Show More Button -->
-        <div style="text-align: center; margin-top: 30px;">
-          <button id="showMoreBtn" class="show-more-btn">Show More</button>
-        </div>
-
-      </div>
-    </section>
-      
-
-
-    <section class="team-section" id="team">
-        <h1>Meet Our Cybersecurity Team</h1>
-        <div class="swiper mySwiper">
-          <div class="swiper-wrapper">
-      
-            <div class="swiper-slide team-card">
-              <img src="assets/team/gitesh_bharambe .jpg" alt="Gitesh Bharambe">
-              <h3>Gitesh Bharambe</h3>
-              <p class="role">Captain</p>
-            </div>
-      
-            <div class="swiper-slide team-card">
-              <img src="assets/team/deshmukh.jpg" alt="Prathamesh Deshmukh">
-              <h3>Prathamesh Deshmukh</h3>
-              <p class="role">Vice-Captain</p>
-            </div>
-      
-            <div class="swiper-slide team-card">
-              <img src="assets/team/Aditya.jpg" alt="Aditya Dahibhate">
-              <h3>Aditya Dahibhate</h3>
-              <p class="role">Member</p>
-            </div>
-      
-            <div class="swiper-slide team-card">
-              <img src="assets/team/vijay_shikhre.jpg" alt="Vijay Shikhre">
-              <h3>Vijay Shikhre</h3>
-              <p class="role">Member</p>
-            </div>
-      
-            <div class="swiper-slide team-card">
-              <img src="assets/team/Pradeep_Bhale.JPG" alt="Pradeep Bhale">
-              <h3>Pradeep Bhale</h3>
-              <p class="role">Member</p>
-            </div>
-      
-            <div class="swiper-slide team-card">
-              <img src="assets/team/Gajbhiye_pranali.jpg" alt="Pranali Gajbhiye">
-              <h3>Pranali Gajbhiye</h3>
-              <p class="role">Member</p>
-            </div>
-      
-            <div class="swiper-slide team-card">
-              <img src="assets/team/Shradhha_raut.jpg" alt="Shraddha Raut">
-              <h3>Shraddha Raut</h3>
-              <p class="role">Member</p>
-            </div>
-      
-            <div class="swiper-slide team-card">
-              <img src="assets/team/shreyash_chavhan.jpg" alt="Shreyash Chavhan">
-              <h3>Shreyash Chavhan</h3>
-              <p class="role">Member</p>
-            </div>
-      
-            <div class="swiper-slide team-card">
-              <img src="assets/team/Purva_bhagwat.jpg" alt="Purva Bhagwat">
-              <h3>Purva Bhagwat</h3>
-              <p class="role">Member</p>
-            </div>
-      
-            <div class="swiper-slide team-card">
-              <img src="assets/team/Bhavana_patil.jpg" alt="Bhavana Patil">
-              <h3>Bhavana Patil</h3>
-              <p class="role">Member</p>
-            </div>
-
-            <div class="swiper-slide team-card">
-              <img src="assets/team/riya_nehete.jpg" alt="Ujwal Ramteke">
-              <h3>Riya Nehete</h3>
-              <p class="role">Member</p>
-            </div>
-      
-          </div>
-            <!-- Manual swipe buttons -->
-            <div class="swiper-button-prev">‹</div>
-            <div class="swiper-button-next">›</div>
-            <div class="swiper-pagination"></div>
-
-        </div>
-    </section>
-      
-
-
-    <section class="contact-section" id="contact">
-        <div class="contact-header">
-            <h1>Contact Us</h1>
-            <p>We're here to help you secure the future.
+    <section class="contact-section" id="contact" style="background-color: #0b0c10; padding: 80px 40px; color: #f4f4f4;">
+        <div class="contact-header" style="text-align: center; margin-bottom: 40px;">
+            <h1 style="font-size: 2.8em; color: #00bcd4; margin-bottom: 15px;">Contact Us</h1>
+            <p style="font-size: 1.1em; color: #ccc; max-width: 600px; margin: 0 auto; line-height: 1.6;">We're here to help you secure the future.
               Reach out for membership, workshops, events, or collaborations.</p>
-        </div>
-    
-        <div class="contact-container">
+        </div>        <div class="contact-container" style="display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; max-width: 1200px; margin: 0 auto;">
             <!-- Contact Info -->
-            <div class="contact-info">
-                <div class="info-box">
-                    <h3>📍 Address</h3>
-                    <p>Opp. Government ITI, National Highway No. 6,<br>Post: Jalgaon - 425 002, Maharashtra, India</p>
+            <div class="contact-info" style="flex: 1 1 300px; min-width: 260px;">
+                <div class="info-box" style="margin-bottom: 30px; background: rgba(30, 41, 59, 0.8); padding: 25px; border-radius: 10px; border: 1px solid #00bcd4;">
+                    <h3 style="color: #00bcd4; font-size: 1.2em; margin-bottom: 15px;">📍 Address</h3>
+                    <p style="font-size: 1em; color: #e2e8f0; line-height: 1.6;">Opp. Government ITI, National Highway No. 6,<br>Post: Jalgaon - 425 002, Maharashtra, India</p>
                 </div>
 
               
-                <div class="info-box">
-                    <h3>📧 Email</h3>
-                    <p>gcoejcsclub@gmail.com</p>
+                <div class="info-box" style="margin-bottom: 30px; background: rgba(30, 41, 59, 0.8); padding: 25px; border-radius: 10px; border: 1px solid #00bcd4;">
+                    <h3 style="color: #00bcd4; font-size: 1.2em; margin-bottom: 15px;">📧 Email</h3>
+                    <p style="font-size: 1em; color: #e2e8f0; line-height: 1.6;">gcoejcsclub@gmail.com</p>
                 </div>
-            </div>
-
-            <!-- Contact Form -->
-            <form class="contact-form" action="https://formsubmit.co/gcoejcsclub@gmail.com" method="POST">
-              <input type="text" name="name" placeholder="Your Name" required>
-              <input type="email" name="email" placeholder="Your Email" required>
-              <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+            </div><!-- Contact Form -->
+            <form class="contact-form" action="https://formsubmit.co/gcoejcsclub@gmail.com" method="POST" style="flex: 1 1 500px; display: flex; flex-direction: column; gap: 20px;">              <input type="text" name="name" placeholder="Your Name" required style="padding: 15px; border-radius: 6px; background-color: rgba(30, 41, 59, 0.8); border: 1px solid #00bcd4; color: #e2e8f0; font-size: 1em; outline: none; transition: all 0.3s ease;" onFocus="this.style.boxShadow='0 0 8px rgba(0, 188, 212, 0.5)'; this.style.backgroundColor='rgba(30, 41, 59, 0.95)';" onBlur="this.style.boxShadow='none'; this.style.backgroundColor='rgba(30, 41, 59, 0.8)';">
+              <input type="email" name="email" placeholder="Your Email" required style="padding: 15px; border-radius: 6px; background-color: rgba(30, 41, 59, 0.8); border: 1px solid #00bcd4; color: #e2e8f0; font-size: 1em; outline: none; transition: all 0.3s ease;" onFocus="this.style.boxShadow='0 0 8px rgba(0, 188, 212, 0.5)'; this.style.backgroundColor='rgba(30, 41, 59, 0.95)';" onBlur="this.style.boxShadow='none'; this.style.backgroundColor='rgba(30, 41, 59, 0.8)';">
+              <textarea name="message" rows="5" placeholder="Your Message" required style="padding: 15px; border-radius: 6px; background-color: rgba(30, 41, 59, 0.8); border: 1px solid #00bcd4; color: #e2e8f0; font-size: 1em; outline: none; transition: all 0.3s ease; resize: vertical;" onFocus="this.style.boxShadow='0 0 8px rgba(0, 188, 212, 0.5)'; this.style.backgroundColor='rgba(30, 41, 59, 0.95)';" onBlur="this.style.boxShadow='none'; this.style.backgroundColor='rgba(30, 41, 59, 0.8)';"></textarea>
   
               <!-- redirect to thank-you page after form submission -->
                <input type="hidden" name="_next" value="https://vijayshikhare.github.io/CyberSecurityClub/thank-you.html">
               <input type="hidden" name="_captcha" value="false">
-              <button type="submit">Send Message</button>
+              <button type="submit" style="padding: 15px 25px; background: linear-gradient(135deg, #00bcd4, #1e3c72); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 1em; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(0, 188, 212, 0.3); position: relative; overflow: hidden;" onmouseover="this.style.boxShadow='0 6px 15px rgba(0, 188, 212, 0.5)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.boxShadow='0 4px 10px rgba(0, 188, 212, 0.3)'; this.style.transform='translateY(0)';"><span style="position: relative; z-index: 2;">Send Message</span><span style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: all 0.5s ease; transform: skewX(-25deg);" onmouseover="this.style.left='100%';"></span></button>
             </form>
 
-        </div>
-    </section>
-    
+        </div>    </section>
   
-    
-    <footer class="footer-section">
-        <div class="footer-container">
-            <!-- College Info -->
-            <div class="footer-about">
-                <h2>CyberSecurity Club</h2>
-                <p>
+      <footer class="footer-section" style="background-color: #000000; color: #f4f4f4; padding: 60px 40px 20px;">
+        <div class="footer-container" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px; max-width: 1200px; margin: auto;">            <!-- College Info -->
+            <div class="footer-about" style="flex: 1 1 200px; min-width: 260px;">
+                <h2 style="color: #00bcd4; font-size: 1.3em; margin-bottom: 15px; position: relative; display: inline-block;">CyberSecurity Club
+                    <span style="position: absolute; bottom: -3px; left: 0; width: 0; height: 2px; background: linear-gradient(to right, #00bcd4, transparent); transition: width 0.3s ease;" onmouseover="this.style.width='100%'"></span>
+                </h2>
+                <p style="font-size: 1em; line-height: 1.6; color: #ccc; padding: 10px; border-radius: 8px; background-color: rgba(30, 41, 59, 0.3);">
                     Empowering the next generation of cybersecurity experts through innovation, education, and real-world training.
                 </p>
             </div>
     
-            <!-- Quick Links -->
-            <div class="footer-links">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#blogSection">Blog</a></li>
-                    <li><a href="#team">Team</a></li>
-                    <li><a href="#contact">Contact</a></li>
+            <!-- Quick Links -->            
+            <div class="footer-links" style="flex: 1 1 200px; min-width: 260px;">
+                <h3 style="color: #00bcd4; font-size: 1.3em; margin-bottom: 15px;">Quick Links</h3>                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 10px;"><a href="#home" style="color: #ccc; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.color='#00bcd4'; this.style.paddingLeft='8px';" onmouseout="this.style.color='#ccc'; this.style.paddingLeft='0';">Home</a></li>
+                    <li style="margin-bottom: 10px;"><a href="#about" style="color: #ccc; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.color='#00bcd4'; this.style.paddingLeft='8px';" onmouseout="this.style.color='#ccc'; this.style.paddingLeft='0';">About</a></li>
+                    <li style="margin-bottom: 10px;"><a href="writeups.html" style="color: #ccc; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.color='#00bcd4'; this.style.paddingLeft='8px';" onmouseout="this.style.color='#ccc'; this.style.paddingLeft='0';">Writeups</a></li>
+                    <li style="margin-bottom: 10px;"><a href="#team" style="color: #ccc; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.color='#00bcd4'; this.style.paddingLeft='8px';" onmouseout="this.style.color='#ccc'; this.style.paddingLeft='0';">Team</a></li>
+                    <li style="margin-bottom: 10px;"><a href="#contact" style="color: #ccc; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.color='#00bcd4'; this.style.paddingLeft='8px';" onmouseout="this.style.color='#ccc'; this.style.paddingLeft='0';">Contact</a></li>
                 </ul>
             </div>
 
 
-            <div id="connect" class="connect-section">
-                <h2>Connect With Us</h2>
-                <div class="social-links">
-                    <a href="https://ctftime.org/team/374049" target="_blank" aria-label="CTFtime Team">
-                      <img src="./assets/images/ctftime.svg" alt="CTFtime Logo" style="height: 40px; width: auto;">
+            <div id="connect" class="connect-section" style="flex: 1 1 200px; min-width: 260px;">
+                <h2 style="color: #00bcd4; font-size: 1.3em; margin-bottom: 15px;">Connect With Us</h2>                <div class="social-links" style="display: flex; padding-top: 20px; gap: 30px;">
+                    <a href="https://ctftime.org/team/374049" target="_blank" aria-label="CTFtime Team" style="transition: all 0.3s ease; transform: translateY(0);" onmouseover="this.style.transform='translateY(-5px)';" onmouseout="this.style.transform='translateY(0)';">
+                      <img src="./assets/images/ctftime.svg" alt="CTFtime Logo" style="height: 40px; width: auto; filter: drop-shadow(0 0 2px rgba(0, 188, 212, 0.5));" onmouseover="this.style.filter='drop-shadow(0 0 8px rgba(0, 188, 212, 0.8))';" onmouseout="this.style.filter='drop-shadow(0 0 2px rgba(0, 188, 212, 0.5))';">
                     </a>
-                  
-                    <a href="https://github.com/gcoejcsclub" target="_blank" class="social-icon github" aria-label="GitHub">
+                    <a href="https://github.com/gcoejcsclub" target="_blank" class="social-icon github" aria-label="GitHub" style="font-size: 28px; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; color: #fff; border: 2px solid transparent; background-color: rgba(30, 41, 59, 0.6); transition: all 0.3s ease; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); transform: translateY(0);" onmouseover="this.style.backgroundColor='rgba(0, 188, 212, 0.2)'; this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 16px rgba(0, 188, 212, 0.3)';" onmouseout="this.style.backgroundColor='rgba(30, 41, 59, 0.6)'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 8px rgba(0, 0, 0, 0.2)';">
                       <i class="fab fa-github"></i>
                     </a>
 
-                    <a href="https://www.linkedin.com/in/gcoejcsclub" target="_blank" class="social-icon linkedin" aria-label="LinkedIn">
+                    <a href="https://www.linkedin.com/in/gcoejcsclub" target="_blank" class="social-icon linkedin" aria-label="LinkedIn" style="font-size: 28px; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; color: #fff; border: 2px solid transparent; background-color: rgba(30, 41, 59, 0.6); transition: all 0.3s ease; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); transform: translateY(0);" onmouseover="this.style.backgroundColor='rgba(0, 188, 212, 0.2)'; this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 16px rgba(0, 188, 212, 0.3)';" onmouseout="this.style.backgroundColor='rgba(30, 41, 59, 0.6)'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 8px rgba(0, 0, 0, 0.2)';">
                       <i class="fab fa-linkedin"></i>
                     </a>
 
                 </div>
             </div>
             
-        </div>
-    
-        <div class="footer-bottom">
+        </div>        <div class="footer-bottom" style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #1e3c72; font-size: 0.95em; color: #888;">
             <p>&copy; 2025 GCOEJ College. All rights are reserved.</p>
-            <p>Developed by <a href="https://github.com/vijayshikhare" target="_blank">Vijay Shikhre</a></p>
-
+            <p>Developed by <a href="https://github.com/vijayshikhare" target="_blank" style="color: #00bfff; text-decoration: none; font-weight: 500; position: relative; transition: all 0.3s ease;" onmouseover="this.style.color='#ffffff'; this.style.textShadow='0 0 8px rgba(0, 188, 212, 0.8)';" onmouseout="this.style.color='#00bfff'; this.style.textShadow='none';">Vijay Shikhre</a></p>
+            <p style="margin-top: 15px; font-size: 0.9em;">
+                <a href="#" style="color: #777; text-decoration: none; margin: 0 10px; transition: all 0.3s ease;" onmouseover="this.style.color='#00bcd4';" onmouseout="this.style.color='#777';">Privacy Policy</a> | 
+                <a href="#" style="color: #777; text-decoration: none; margin: 0 10px; transition: all 0.3s ease;" onmouseover="this.style.color='#00bcd4';" onmouseout="this.style.color='#777';">Terms of Service</a>
+            </p>
         </div>
-    </footer>
-    
-    <script src="js/script.js"></script>
+    </footer><script src="js/script.js"></script>
     <script src="./blog/blog.js" defer></script>
+    <script src="js/check-css.js" defer></script>
 
-    <script src="ctf-writeups-master/assets/js/overlay.js"></script>
-
-    
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>
-      // Initialize Swiper
-      const swiper = new Swiper('.swiper', {
-        slidesPerView: 3,
-        spaceBetween: 30,
-        loop: true,
-        autoplay: {
-          delay: 3000,
-          disableOnInteraction: false,
-        },
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-        },
-        breakpoints: {
-          1024: {
-            slidesPerView: 3,
-          },
-          768: {
-            slidesPerView: 2,
-          },
-          480: {
-            slidesPerView: 1,
-          },
-        },
-      });
-    
-
-    </script>
-    
-      
-</body>
+    <!-- <script src="ctf-writeups-master/assets/js/overlay.js"></script> -->
+      </body>
 </html>

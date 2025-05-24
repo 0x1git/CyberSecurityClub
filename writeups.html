@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="./assets/images/favicon_circular.png">
+    <title>Writeups & Tutorials - CyberSecurity Club</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="./blog/blog.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Writeups Page Specific Styles */
+        .writeups-hero {
+            background: linear-gradient(135deg, #0b0c10 0%, #1e3c72 50%, #2a5298 100%);
+            padding: 120px 40px 80px;
+            text-align: center;
+            color: #f4f4f4;
+        }
+
+        .writeups-hero h1 {
+            font-size: 3.5em;
+            color: #00bcd4;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(0, 188, 212, 0.5);
+        }
+
+        .writeups-hero p {
+            font-size: 1.2em;
+            color: #ccc;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .writeups-section {
+            background-color: #0b0c10;
+            padding: 80px 40px;
+            color: #f4f4f4;
+        }
+
+        .writeups-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Override blog section styles for writeups page */
+        .blog-section {
+            background-color: #0b0c10;
+            padding: 0;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .writeups-hero {
+                padding: 100px 20px 60px;
+            }
+            
+            .writeups-hero h1 {
+                font-size: 2.5em;
+            }
+            
+            .writeups-hero p {
+                font-size: 1.1em;
+            }
+            
+            .writeups-section {
+                padding: 60px 20px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .writeups-hero h1 {
+                font-size: 2em;
+            }
+            
+            .writeups-hero p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="navbar" id="navbar">
+        <div class="logo">
+            <img src="./assets/images/logo.jpg" alt="CyberSecurity Club Logo">
+            <a href="index.html" class="ctf-title">CyberSecurity Club</a>
+        </div>
+        <nav>            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#team">Team</a></li>
+                <li><a href="writeups.html" class="active">Writeups</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="writeups-hero">
+        <h1>Tech Articles & Tutorials</h1>
+        <p>Explore our comprehensive collection of cybersecurity writeups, technical tutorials, and in-depth analysis of various security concepts. From SQL injection to API security, discover practical knowledge and hands-on examples.</p>
+    </section>
+
+    <!-- Writeups Content Section -->
+    <section class="writeups-section">
+        <div class="writeups-container">
+            <section class="blog-section" id="blogSection">
+                <div class="blogdiv">
+                    <div class="blog-header">
+                        <h2>Latest Writeups & Tutorials</h2>
+                        <input type="text" id="searchInput" placeholder="Search writeups and tutorials..." onkeyup="filterBlogs()">
+                    </div>
+                
+                    <div class="blog-container" id="blogContainer">
+                        <!-- Blog 1 -->
+                        <div class="blog-article visible">
+                            <h3>1. What is SQL Injection?</h3>
+                            <p class="blog-text">SQL Injection is a web security vulnerability that allows an attacker to interfere with the queries that an application makes to its database. It generally allows an attacker to view data that they are not normally able to retrieve.</p>
+                    
+                            <div class="snippet-container">
+                                <div class="snippet-header">
+                                    <span class="language-tag">SQL</span>
+                                    <button class="copy-btn" onclick="copySnippet(this)">📋</button>
+                                </div>
+                                <pre><code class="code-content">
+                SELECT * FROM users WHERE email = 'user@example.com';
+                                </code></pre>
+                            </div>
+                    
+                            <p class="blog-text">Always use parameterized queries to prevent SQL injection attacks and validate all user inputs.</p>
+                            <a href="./blog/full-sql-injection.html" class="read-more">Read More →</a>
+                        </div>
+                
+                        <!-- Blog 2 -->
+                        <div class="blog-article">
+                            <h3>2. How to Secure APIs with JWT</h3>
+                            <p class="blog-text">
+                                JSON Web Tokens (JWTs) are a secure way to transmit information between parties as a JSON object. This information can be verified and trusted because it is digitally signed.
+                            </p>
+                    
+                            <div class="snippet-container">
+                                <div class="snippet-header">
+                                    <span class="language-tag">Node.js</span>
+                                    <button class="copy-btn" onclick="copySnippet(this)">📋</button>
+                                </div>
+                                <pre><code class="code-content">
+                const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+                                </code></pre>
+                            </div>
+                    
+                            <p class="blog-text">Always store your secret keys safely and rotate JWTs periodically to enhance API security.</p>
+                            <a href="./blog/full-sql-injection.html" class="read-more">Read More →</a>
+                        </div>
+                
+                        <!-- Blog 3 -->
+                        <div class="blog-article">
+                            <h3>3. Responsive Web Design Basics</h3>
+                            <p class="blog-text">
+                                Responsive design ensures your website works well on all devices, from mobile phones to desktop computers. It's essential for modern web development.
+                            </p>
+                    
+                            <div class="snippet-container">
+                                <div class="snippet-header">
+                                    <span class="language-tag">CSS</span>
+                                    <button class="copy-btn" onclick="copySnippet(this)">📋</button>
+                                </div>
+                                <pre><code class="code-content">
+                @media (max-width: 768px) {
+                    .container {
+                        flex-direction: column;
+                    }
+                }
+                                </code></pre>
+                            </div>
+                    
+                            <p class="blog-text">Always use flexible layouts and test your designs across multiple device sizes.</p>
+                            <a href="./blog/full-sql-injection.html" class="read-more">Read More →</a>
+                        </div>
+                
+                        <!-- Blog 4 -->
+                        <div class="blog-article">
+                            <h3>4. Basics of Hashing Passwords</h3>
+                            <p class="blog-text">
+                                Hashing passwords before storing them in a database is a fundamental security practice. Never store passwords in plain text.
+                            </p>
+                    
+                            <div class="snippet-container">
+                                <div class="snippet-header">
+                                    <span class="language-tag">Python</span>
+                                    <button class="copy-btn" onclick="copySnippet(this)">📋</button>
+                                </div>
+                                <pre><code class="code-content">
+                import bcrypt
+                password = "mypassword"
+                hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+                                </code></pre>
+                            </div>
+                    
+                            <p class="blog-text">Always use strong hashing algorithms like bcrypt and include salt for additional security.</p>
+                            <a href="./blog/full-sql-injection.html" class="read-more">Read More →</a>
+                        </div>
+                
+                        <!-- Blog 5 -->
+                        <div class="blog-article">
+                            <h3>5. Difference Between var, let and const</h3>
+                            <p class="blog-text">
+                                JavaScript offers multiple ways to declare variables. Understanding the differences between var, let, and const is crucial for writing clean code.
+                            </p>
+                    
+                            <div class="snippet-container">
+                                <div class="snippet-header">
+                                    <span class="language-tag">JavaScript</span>
+                                    <button class="copy-btn" onclick="copySnippet(this)">📋</button>
+                                </div>
+                                <pre><code class="code-content">
+                var a = 10;    // Function scoped
+                let b = 20;    // Block scoped
+                const c = 30;  // Block scoped (constant)
+                                </code></pre>
+                            </div>
+                    
+                            <p class="blog-text">Prefer using const for values that won't change, and let for variables that will be reassigned.</p>
+                            <a href="./blog/full-sql-injection.html" class="read-more">Read More →</a>
+                        </div>
+
+                        <!-- Blog 6 -->
+                        <div class="blog-article">
+                            <h3>6. Cross-Site Scripting (XSS) Prevention</h3>
+                            <p class="blog-text">
+                                Cross-Site Scripting attacks occur when malicious scripts are injected into trusted websites. Learn how to prevent these attacks.
+                            </p>
+                    
+                            <div class="snippet-container">
+                                <div class="snippet-header">
+                                    <span class="language-tag">JavaScript</span>
+                                    <button class="copy-btn" onclick="copySnippet(this)">📋</button>
+                                </div>
+                                <pre><code class="code-content">
+                // Escape user input
+                function escapeHtml(unsafe) {
+                    return unsafe.replace(/[&<"']/g, function(m) {
+                        return {'&':'&amp;','<':'&lt;','"':'&quot;',"'":'&#39;'}[m];
+                    });
+                }
+                                </code></pre>
+                            </div>
+                    
+                            <p class="blog-text">Always sanitize user inputs and use Content Security Policy (CSP) headers to prevent XSS attacks.</p>
+                            <a href="./blog/full-sql-injection.html" class="read-more">Read More →</a>
+                        </div>
+
+                        <!-- Blog 7 -->
+                        <div class="blog-article">
+                            <h3>7. Network Security Fundamentals</h3>
+                            <p class="blog-text">
+                                Understanding network security basics is essential for cybersecurity professionals. Learn about firewalls, VPNs, and intrusion detection systems.
+                            </p>
+                    
+                            <div class="snippet-container">
+                                <div class="snippet-header">
+                                    <span class="language-tag">Bash</span>
+                                    <button class="copy-btn" onclick="copySnippet(this)">📋</button>
+                                </div>
+                                <pre><code class="code-content">
+                # Check open ports
+                nmap -sT -O localhost
+                
+                # Monitor network traffic
+                tcpdump -i eth0 -w traffic.pcap
+                                </code></pre>
+                            </div>
+                    
+                            <p class="blog-text">Regular network monitoring and proper firewall configuration are key to maintaining network security.</p>
+                            <a href="./blog/full-sql-injection.html" class="read-more">Read More →</a>
+                        </div>
+
+                        <!-- Blog 8 -->
+                        <div class="blog-article">
+                            <h3>8. Cryptography Basics</h3>
+                            <p class="blog-text">
+                                Cryptography is the practice of securing information by transforming it into an unreadable format. Learn about encryption, decryption, and digital signatures.
+                            </p>
+                    
+                            <div class="snippet-container">
+                                <div class="snippet-header">
+                                    <span class="language-tag">Python</span>
+                                    <button class="copy-btn" onclick="copySnippet(this)">📋</button>
+                                </div>
+                                <pre><code class="code-content">
+                from cryptography.fernet import Fernet
+                
+                # Generate a key
+                key = Fernet.generate_key()
+                cipher_suite = Fernet(key)
+                
+                # Encrypt data
+                encrypted_data = cipher_suite.encrypt(b"Hello World")
+                                </code></pre>
+                            </div>
+                    
+                            <p class="blog-text">Use established cryptographic libraries and never implement your own encryption algorithms from scratch.</p>
+                            <a href="./blog/full-sql-injection.html" class="read-more">Read More →</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="footer-container">
+            <div class="footer-about">
+                <h2>CyberSecurity Club</h2>
+                <p>We are dedicated to advancing cybersecurity knowledge and skills through hands-on learning, CTF competitions, and collaborative research. Join us in building a safer digital world.</p>
+            </div>            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#team">Team</a></li>
+                    <li><a href="writeups.html">Writeups</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-envelope"></i> cybersecurity@gcoej.ac.in</p>
+                <p><i class="fas fa-phone"></i> +91 1234567890</p>
+                <p><i class="fas fa-map-marker-alt"></i> GCOEJ, Jalgaon, Maharashtra</p>
+            </div>
+
+            <div class="connect-section">
+                <h2>Connect With Us</h2>
+                <div class="social-links">
+                    <a href="#" class="social-icon insta" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-icon linkedin" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="social-icon ctftime" aria-label="CTFtime Team">
+                        <img src="./assets/images/ctftime.svg" alt="CTFtime" style="height: 24px; width: 24px;">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 CyberSecurity Club GCOEJ. All rights reserved. | Designed with ❤️ by our team</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+    <script src="blog/blog.js"></script>
+</body>
+</html>
